@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrimerContactoTrigger_SLE.MainPage">
+
+    <StackLayout>
+        <!---INTENTO DE HACER UN BOTON DE QUE TE HACE UN MODO OSCURO SIUU-->
+        <RadioButton>
+            <RadioButton.Triggers>
+                <Trigger TargetType="RadioButton" Property="IsChecked" Value="true">
+                    <Setter Property="BackgroundColor" Value="Yellow"/>
+                </Trigger>
+            </RadioButton.Triggers>
+        </RadioButton>
+            <!---CUANDO SE PICA YA NO SE PUEDE REGRESAR >:D-->
+        <CheckBox>
+            <CheckBox.Triggers>
+                <Trigger TargetType="CheckBox" Property="IsChecked" Value="True">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </Trigger>
+            </CheckBox.Triggers>
+        </CheckBox>
+
+
+        <Entry x:Name="entry"
+       Text=""
+       Placeholder="required field" />
+
+        <Button x:Name="button" Text="Save"
+        FontSize="Large"
+        HorizontalOptions="Center">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button"
+                     Binding="{Binding Source={x:Reference entry},
+                                       Path=Text.Length}"
+                     Value="0">
+                    <Setter Property="IsEnabled" Value="False" />
+                    <!-- multiple Setters elements are allowed -->
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
+        <!---
+        <Entry Placeholder="enter name">
+            <Entry.Triggers>
+                <Trigger TargetType="Entry"
+                 Property="IsFocused" Value="True">
+                    <Setter Property="BackgroundColor" Value="Yellow" />
+                     
+                </Trigger>
+            </Entry.Triggers>
+        </Entry>-->
+    </StackLayout> 
+   
+
+</ContentPage>
